@@ -32,7 +32,7 @@ slider.addEventListener("input", () => {
 
     for (let i = 0; i < tags.length; i++) {
         
-        tags[i].addEventListener('mousedown', () => {
+        tags[i].addEventListener('mouseover', () => {
             tags[i].style.backgroundColor = "red";
         })
     }
