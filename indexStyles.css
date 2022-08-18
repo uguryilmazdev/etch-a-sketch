@@ -1,5 +1,9 @@
 :root {
     --grey: rgb(49, 47, 47);
+    --white: antiquewhite;
+    --blue: rgb(3, 19, 61);
+    --lightBlue : rgb(134, 226, 226);
+    --black: black;
 }
 
 *, html {
@@ -7,8 +11,24 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    width: 100%;
     background-color: var(--grey);
+}
+
+#appTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    color: var(--white);
+    font-size: 72px;
+    background-color: var(--blue);
+}
+
+#main-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80%;
 }
 
 #aside-container {
@@ -16,26 +36,100 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: red;
-    height: 100%;
-    width: 30%;
-    float: left;
+    width: 350px;
+    height: 90%;
+    background-color: var(--blue);
 }
 
-#sliderText {
-    width: 70%;
+#aside-container > div {
+    height: 50px;
+    margin: 5px auto;
 }
 
-.slideContainer {
-    width: 70%;
-}
-
-#main-container {
+.colorPalette {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 70%;
+    border-radius: 5px;
+    background-color: var(--white);
+}
+
+.colorPalette > [type="color"] {
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    height: 50px;
+    background-color: var(--white);
+}
+
+.colorPalette > label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    color: var(--black);
+    background-color: var(--white);
+    font-size: 26px;
+    border-radius: 5px;
+}
+
+#controlButtons {
+    display: flex;
+    flex-direction: column;
+    justify-items: space-evenly;
+    align-items: center;
+}
+
+.button {
+    height: 50px;
+    width: 300px;
+    margin: 5px auto;
+    color: var(--black);
+    font-size: 26px;
+    border-radius: 5px;
+    background-color: var(--white);
+}
+
+.button:hover {
+    background-color: var(--lightBlue);
+}
+
+.button:active {
+    transform: translateY(4px);
+}
+
+#aside-container > #sliderContainer {
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+    border-radius: 5px;
+    margin-top: 30px;
+    background-color: var(--white);
+}
+
+#sliderContainer > #slider {
+    width: 300px;
+    height: 50px;
+}
+
+#sliderContainer > #sliderText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 10px;
+    border-radius: 5px;
+    color: var(--black);
+    background-color: var(--white);
+    font-size: 26px;
+}
+
+
+#sketchFrame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #sketch-container {
@@ -46,7 +140,8 @@
     background-color: antiquewhite;
 }
 
-#button {
-    height: 100px;
-    width: 100px;
+
+.footer {
+    height: 10%;
+    background-color: var(--blue);
 }

@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="Etch a sketch application">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="indexStyles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bahianita&display=swap" rel="stylesheet">
-        <script src="indexJavaScript.js" defer></script>
-    </head>
 
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Etch a sketch application">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./indexStyles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bahianita&display=swap" rel="stylesheet">
+    <script src="./indexJavaScript.js" defer></script>
+</head>
+
+<body>
+    <h1 id="appTitle">Sketch</h1>
+    <main id="main-container">
         <aside class="aside-container" id="aside-container">
-            <p id="sliderText">0</p>
-            <div class="slideContainer">
-                <input type="range" min="1" max="64" value="32" 
-                class="slider" id="slider">
+            <div id="penColor" class="colorPalette">
+                <input type="color" id="penColor" name="penColor" value="#FFFFFF">
+                <label for="penColor">Pen Color</label>
             </div>
+            <div id="backgroundColor" class="colorPalette">
+                <input type="color" id="backgroundColor" name="backgroundColor" value="#000000">
+                <label for="backgroundColor">Background Color</label>
+            </div>
+
+            <input type="button" class="button" id="colorModeBtn" value="Color Mode">
+            <input type="button" class="button" id="eraserBtn" value="Eraser">
+            <input type="button" class="button" id="clearBtn" value="Clear">
+
+            <div class="sliderContainer" id="sliderContainer">
+                <input type="range" min="1" max="64" value="32" class="slider" id="slider">
+                <label for="slider" id="sliderText">32 x 32</label>
+            </div>
+
+            <input type="button" class="button" id="toggleGridBtn" value="Toggle Grid">
+
         </aside>
-        <main class="main-container" id="main-container">      
+        <div class="sketchFrame" id="sketchFrame">
             <div class="sketch-container" id="sketch-container"></div>
-        </main>
-    </body>
+        </div>
+    </main>
+    <footer class="footer" id="footer">Copyright © 2022 Askalamentor</footer>
+</body>
+
 </html>
