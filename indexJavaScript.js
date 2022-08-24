@@ -13,6 +13,7 @@ const toggleGridBtn = document.querySelector("#toggleGridBtn");
 // global variables
 let toggleGrid = true;
 let sketchSideLength = document.querySelector("#sketch-container").offsetWidth;
+let penColorArr = ['#000000']; // #000000 is initial value
 //----------------------------------------------------------------
 
 // opening container setting
@@ -35,7 +36,11 @@ slider.addEventListener("input", () => {
 })
 
 // change event to improve search smoothness
-penColor.addEventListener("change", changeBoxColor); 
+penColor.addEventListener("change", () => {
+    changeBoxColor();
+    modifyPenColorArr();
+} ); 
+
 // input event for instant changing background but there is a smoothness problem
 // if you want change it to change event (trade-off) 
 backColor.addEventListener("input", changeBackGroundColor); 
@@ -80,6 +85,7 @@ eraserBtn.addEventListener("click", () => {
      isClicked = false;
  })
 
+// ---------------------------------------------------------------
 // functions
 function resetSketchContainer(sketchContainer) {
 
@@ -106,6 +112,9 @@ function addBoxToSketchContainer(slider, sketchContainer, sketchSideLength) {
         divTag.style.border = "1px solid rgba(0,0,255,0.25)";
         divTag.style.backgroundColor = backColor.value;
         
+        // check if box is painted
+        divTag.setAttribute('key', 'false');
+
         sketchContainer.appendChild(divTag);
     }
 
@@ -117,11 +126,13 @@ function changeBoxColor() {
 
         box.addEventListener("click", () => {
             box.style.backgroundColor = penColor.value;
+            box.setAttribute('key', 'true');
         })
 
         box.addEventListener("mousemove", () => {
             if (isClicked) {
                 box.style.backgroundColor = penColor.value;
+                box.setAttribute('key', 'true');
             }       
         })
 
@@ -132,8 +143,8 @@ function changeBoxColor() {
 function changeBackGroundColor() {
 
     childrenBox.forEach(function(box) {
-       // avoid to change drawing
-        if (box.style.backgroundColor !== convertHexToRGB(penColor.value)) {
+       // prevent to change drawing
+        if (box.getAttribute('key') === 'false') {
             box.style.backgroundColor = backColor.value;
         }     
     })
@@ -160,5 +171,11 @@ function convertHexToRGB(hexValue) {
     colorRGB = 'rgb(' + colorRGB.join(', ') + ')';
 
     return colorRGB;
+
+}
+
+function modifyPenColorArr() {
+
+    penColorArr.push(penColor.value);
 
 }
