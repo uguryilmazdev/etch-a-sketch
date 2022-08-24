@@ -14,6 +14,7 @@ const toggleGridBtn = document.querySelector("#toggleGridBtn");
 let toggleGrid = true;
 let sketchSideLength = document.querySelector("#sketch-container").offsetWidth;
 let penColorArr = ['#000000']; // #000000 is initial value
+let isEraserMode = false;
 //----------------------------------------------------------------
 
 // opening container setting
@@ -22,8 +23,9 @@ addBoxToSketchContainer(slider, sketchContainer, sketchSideLength));
 
 const childrenBox = sketchContainer.childNodes;
 
-window.addEventListener("load", changeBoxColor()); // 
+window.addEventListener("load", changeBoxColor); // 
 
+// Slider events
 slider.addEventListener("change", () => {
 
     resetSketchContainer(sketchContainer);
@@ -37,6 +39,7 @@ slider.addEventListener("input", () => {
     document.querySelector("#sliderText").innerText = `${slider.value} x ${slider.value}`;
 })
 
+// pen and background events
 // change event to improve search smoothness
 penColor.addEventListener("change", () => {
     changeBoxColor();
@@ -46,6 +49,9 @@ penColor.addEventListener("change", () => {
 // input event for instant changing background but there is a smoothness problem
 // if you want change it to change event (trade-off) 
 backColor.addEventListener("input", changeBackGroundColor); 
+
+// eraser event
+eraserBtn.addEventListener("click", useEraserMode);
 
 
 /*
@@ -124,23 +130,23 @@ function addBoxToSketchContainer(slider, sketchContainer, sketchSideLength) {
 
 function changeBoxColor() {
 
-    childrenBox.forEach((box) => {
+        childrenBox.forEach((box) => {
 
-        box.addEventListener("click", () => {
-            box.style.backgroundColor = penColor.value;
-            box.setAttribute('key', 'true');
-        })
-
-        box.addEventListener("mousemove", () => {
-            if (isClicked) {
+            box.addEventListener("click", () => {
                 box.style.backgroundColor = penColor.value;
                 box.setAttribute('key', 'true');
-            }       
+            })
+    
+            box.addEventListener("mousemove", () => {
+                if (isClicked) {
+                    box.style.backgroundColor = penColor.value;
+                    box.setAttribute('key', 'true');
+                }       
+            })
+    
         })
 
-    })
-
-}
+    }
 
 function changeBackGroundColor() {
 
@@ -180,4 +186,37 @@ function modifyPenColorArr() {
 
     penColorArr.push(penColor.value);
 
+}
+
+function useEraserMode() {
+
+    // control whether is open
+    if (isEraserMode === false) {
+
+        isEraserMode = true;
+        eraserBtn.style.backgroundColor = "rgb(185, 162, 131)";
+
+        childrenBox.forEach((box) => {
+
+            box.addEventListener("click", () => {
+                box.style.backgroundColor = backColor.value;
+                box.setAttribute('key', 'false');
+            })
+    
+            box.addEventListener("mousemove", () => {
+                if (isClicked) {
+                    box.style.backgroundColor = backColor.value;
+                    box.setAttribute('key', 'false');
+                }       
+            })
+    
+        })
+
+    } else if (isEraserMode === true) {
+
+        eraserBtn.style.backgroundColor = "antiquewhite";
+        isEraserMode = false;
+        changeBoxColor();
+        
+    }
 }
