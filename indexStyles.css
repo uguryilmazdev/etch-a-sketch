@@ -1,7 +1,7 @@
 :root {
-    --grey: rgb(49, 47, 47);
+    --grey: rgb(26, 33, 51);
     --white: antiquewhite;
-    --blue: rgb(3, 19, 61);
+    --blue: rgb(16, 27, 54);
     --black: black;
 }
 
@@ -19,7 +19,7 @@
     align-items: center;
     height: 10%;
     color: var(--white);
-    font-size: 72px;
+    font-size: 54px;
     background-color: var(--blue);
 }
 
