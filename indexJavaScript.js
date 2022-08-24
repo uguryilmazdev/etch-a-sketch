@@ -53,6 +53,9 @@ backColor.addEventListener("input", changeBackGroundColor);
 // eraser event
 eraserBtn.addEventListener("click", useEraserMode);
 
+// clear event
+clearBtn.addEventListener("click", useClearMode);
+
 
 /*
 toggleGridBtn.addEventListener("click", () => {
@@ -71,15 +74,6 @@ toggleGridBtn.addEventListener("click", () => {
         })
     }
 })
-*/
-
-/*
-eraserBtn.addEventListener("click", () => {
-    childrenBox.forEach(function(box) {
-        console.log(box.style.backgroundColor);
-        
-    })
-}) 
 */
 
  // catch if mousedown-mouseup on boxes
@@ -217,6 +211,15 @@ function useEraserMode() {
         eraserBtn.style.backgroundColor = "antiquewhite";
         isEraserMode = false;
         changeBoxColor();
-        
+
     }
+}
+
+function useClearMode() {
+
+    childrenBox.forEach((box) => {
+        box.style.backgroundColor = backColor.value;
+        box.setAttribute('key', 'false');
+    })
+
 }
