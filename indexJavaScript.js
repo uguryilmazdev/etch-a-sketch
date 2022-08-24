@@ -13,7 +13,6 @@ const toggleGridBtn = document.querySelector("#toggleGridBtn");
 // global variables
 let toggleGrid = true;
 let sketchSideLength = document.querySelector("#sketch-container").offsetWidth;
-
 //----------------------------------------------------------------
 
 // opening container setting
@@ -35,8 +34,11 @@ slider.addEventListener("input", () => {
     changeBoxColor();
 })
 
-penColor.addEventListener("input", changeBoxColor);
-backColor.addEventListener("input", changeBackGroundColor);
+// change event to improve search smoothness
+penColor.addEventListener("change", changeBoxColor); 
+// input event for instant changing background but there is a smoothness problem
+// if you want change it to change event (trade-off) 
+backColor.addEventListener("input", changeBackGroundColor); 
 
 
 /*
