@@ -15,11 +15,14 @@ let toggleGrid = true;
 let sketchSideLength = document.querySelector("#sketch-container").offsetWidth;
 let penColorArr = ['#000000']; // #000000 is initial value
 let isEraserMode = false;
+let isGridMode = false;
 //----------------------------------------------------------------
 
 // opening container setting
-window.addEventListener("load", 
-addBoxToSketchContainer(slider, sketchContainer, sketchSideLength));
+window.addEventListener("load", () => {
+    addBoxToSketchContainer(slider, sketchContainer, sketchSideLength);
+    toggleGridMode();
+});
 
 const childrenBox = sketchContainer.childNodes;
 
@@ -33,6 +36,10 @@ slider.addEventListener("change", () => {
     
     // call changeBoxColor to prevent missing pen color value after using slider
     changeBoxColor();
+
+    // call to toggleGridMode to prevent changing grid mode after using slider
+    isGridMode = !isGridMode;
+    toggleGridMode();
 })
 
 slider.addEventListener("input", () => {
@@ -56,25 +63,8 @@ eraserBtn.addEventListener("click", useEraserMode);
 // clear event
 clearBtn.addEventListener("click", useClearMode);
 
-
-/*
-toggleGridBtn.addEventListener("click", () => {
-
-    if (gridBtn === true) {
-        gridBtn = false;
-
-
-        boxes.forEach((box) => {
-            box.style.border = "1px solid backgroundColor.value";
-        })
-    } else {
-        gridBtn = true;
-        boxes.forEach((box) => {
-            box.style.border = "1px solid rgba(0,0,255,0.25)";
-        })
-    }
-})
-*/
+// grid event
+toggleGridBtn.addEventListener("click", toggleGridMode)
 
  // catch if mousedown-mouseup on boxes
  let isClicked = false;
@@ -221,5 +211,34 @@ function useClearMode() {
         box.style.backgroundColor = backColor.value;
         box.setAttribute('key', 'false');
     })
+
+}
+
+function toggleGridMode() {
+
+    let pixelRatio = sketchSideLength / slider.value;
+
+    if (isGridMode === false) {
+        isGridMode = true;
+        toggleGridBtn.style.backgroundColor = "rgb(185, 162, 131)";
+
+        childrenBox.forEach((box) => {
+            box.style.width = `${pixelRatio - 2}` + "px";
+            box.style.height = `${pixelRatio - 2}` + "px";
+            box.style.border = "1px solid rgba(0,0,255,0.25)";
+        })
+
+
+    } else if (isGridMode === true) {
+        isGridMode = false;
+        toggleGridBtn.style.backgroundColor = "antiquewhite";
+
+        childrenBox.forEach((box) => {
+            box.style.width = `${pixelRatio}` + "px";
+            box.style.height = `${pixelRatio}` + "px";
+            box.style.border = "none";
+        })
+
+    }
 
 }
