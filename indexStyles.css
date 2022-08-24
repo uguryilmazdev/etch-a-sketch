@@ -2,7 +2,6 @@
     --grey: rgb(49, 47, 47);
     --white: antiquewhite;
     --blue: rgb(3, 19, 61);
-    --lightBlue : rgb(134, 226, 226);
     --black: black;
 }
 
@@ -142,6 +141,46 @@
 
 
 .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 10%;
     background-color: var(--blue);
+}
+
+.footer > h6 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--white);
+    background-color: var(--blue);
+    margin: auto 8px;
+}
+
+.footer > a {
+    display: flex;
+    align-items: center;
+    background-color: var(--blue);
+}
+
+#githubImage {
+    height: 28px;
+    width: 28px;
+    border-radius: 25px;
+    margin: auto 8px;
+}
+
+#githubImage:hover {
+    animation: rotate-animation 0.5s ease-out;
+}
+
+@keyframes rotate-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
