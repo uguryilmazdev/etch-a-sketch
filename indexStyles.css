@@ -46,7 +46,7 @@
     margin: 5px auto;
 }
 
-.colorPalette {
+.colorPaletteContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,7 +54,7 @@
     background-color: var(--white);
 }
 
-.colorPalette > [type="color"] {
+.colorPaletteContainer > [type="color"] {
     border: none;
     border-radius: 5px;
     width: 150px;
@@ -62,7 +62,7 @@
     background-color: var(--white);
 }
 
-.colorPalette > label {
+.colorPaletteContainer > label {
     display: flex;
     justify-content: center;
     align-items: center;
