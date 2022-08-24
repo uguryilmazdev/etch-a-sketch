@@ -24,15 +24,17 @@ const childrenBox = sketchContainer.childNodes;
 
 window.addEventListener("load", changeBoxColor()); // 
 
-slider.addEventListener("input", () => {
-
-    document.querySelector("#sliderText").innerText = `${slider.value} x ${slider.value}`;
+slider.addEventListener("change", () => {
 
     resetSketchContainer(sketchContainer);
     addBoxToSketchContainer(slider, sketchContainer, sketchSideLength);
     
     // call changeBoxColor to prevent missing pen color value after using slider
     changeBoxColor();
+})
+
+slider.addEventListener("input", () => {
+    document.querySelector("#sliderText").innerText = `${slider.value} x ${slider.value}`;
 })
 
 // change event to improve search smoothness
